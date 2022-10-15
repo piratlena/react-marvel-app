@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Spinner from '../spinner/spinner';
+import Spinner from '../spinner/Spinner';
 import MarvelService from '../../services/MarvelService'
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
@@ -19,6 +19,7 @@ class RandomChar extends Component{
 
     componentDidMount() {
         this.updateChar();
+        // this.timerId = setInterval(this.updateChar, 15000);
     }
 
     componentWillUnmount() {
@@ -26,12 +27,13 @@ class RandomChar extends Component{
     }
 
     onCharLoaded = (char) => {
-        this.setState({char, 
+        this.setState({
+            char, 
             loading: false
         })
     }
 
-    oncharLoading = () => {
+    onCharLoading = () => {
         this.setState({
             loading: true
         })
@@ -46,14 +48,15 @@ class RandomChar extends Component{
 
     updateChar = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        this.oncharLoading()
+        this.onCharLoading();
         this.marvelService
             .getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError);
     }
-   
-    render () {
+
+    render() {
+
         const {char, loading, error} = this.state;
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
@@ -81,7 +84,6 @@ class RandomChar extends Component{
         )
     }
 }
-
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki} = char;
     let imgStyle = {'objectFit': 'cover'};
