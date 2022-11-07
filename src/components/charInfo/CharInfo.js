@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import './charInfo.scss';
-import thor from '../../resources/img/thor.jpeg';
 import MarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
@@ -24,6 +23,11 @@ class CharInfo extends Component {
         if (this.props.charId !== prevProps.charId) {
             this.updateChar();
         }
+    }
+
+    componentDidCatch(err, info) {
+        console.log(err, info)
+        this.setState({error: true})
     }
 
     updateChar = () => {
