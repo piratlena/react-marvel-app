@@ -6,9 +6,7 @@ const AppHeader = () => {
     <header className="app__header">
       <Link to="/">
         <h1 className="app__title">
-          <a href="#">
-            <span>Marvel</span> information portal
-          </a>
+          <span>Marvel</span> information portal
         </h1>
       </Link>
 
@@ -16,13 +14,13 @@ const AppHeader = () => {
         <ul>
           <Link to="/">
             <li>
-              <a href="#">Characters</a>
+              <h3>Characters</h3>
             </li>
           </Link>
           /
           <Link to="/comics">
             <li>
-              <a href="#">Comics</a>
+              <h3>Comics</h3>
             </li>
           </Link>
         </ul>
